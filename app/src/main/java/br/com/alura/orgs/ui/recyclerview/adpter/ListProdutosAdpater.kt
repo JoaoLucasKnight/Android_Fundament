@@ -12,9 +12,10 @@ import br.com.alura.orgs.model.Produto
 
 class ListProdutosAdpater(
     private val context: Context,
-    private val produtos: List<Produto>
+    produtos: List<Produto>
 ) : RecyclerView.Adapter<ListProdutosAdpater.ViewHolder>() {
 
+    private val produtos = produtos.toMutableList()
     // Criar o proprio ViewHolder e implmenta
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         fun vincula(produto: Produto) {
@@ -43,6 +44,13 @@ class ListProdutosAdpater(
     }
 
     override fun getItemCount(): Int = produtos.size
+
+    fun atualiza(produtos: List<Produto>) {
+        this.produtos.clear()
+        this.produtos.addAll(produtos)
+        // alerta o adpter da mudança
+        notifyDataSetChanged()
+    }
 }
 
 // Criar ViewlHolder > preencha com informações do Layout > vincule os dados
