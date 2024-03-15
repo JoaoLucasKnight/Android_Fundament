@@ -1,11 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+
+<!--
+    * os NameSpace sempre sãod eclarados no elemnto raiz
+    * passar o height e width como referente aos pais (match_parent)
+    * e o fillViewport para os elemento dentro do scroll ocupar toda tela
+    * hint == placeholder
+
+-->
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.FormProdutosActivity">
+    android:fillViewport="true"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.activity.FormProdutosActivity">
+
+        <EditText
+            android:id="@+id/formNome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Nome"
+            android:layout_margin="16dp"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <EditText
+            android:id="@+id/formDescricao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Descrição"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@id/formNome"
+            app:layout_constraintStart_toStartOf="@id/formNome"
+            app:layout_constraintTop_toBottomOf="@+id/formNome"
+            />
+        <EditText
+            android:id="@+id/formValor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Valor"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@id/formNome"
+            app:layout_constraintStart_toStartOf="@id/formNome"
+            app:layout_constraintTop_toBottomOf="@+id/formDescricao"
+            />
+
+        <Button
+            android:id="@+id/bttSalvar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            app:layout_constraintVertical_bias="1"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+

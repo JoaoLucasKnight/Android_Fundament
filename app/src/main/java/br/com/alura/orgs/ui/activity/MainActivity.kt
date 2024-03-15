@@ -1,12 +1,14 @@
 package br.com.alura.orgs.ui.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.orgs.R
 import br.com.alura.orgs.model.Produto
 import br.com.alura.orgs.ui.recyclerview.adpter.ListProdutosAdpater
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
 
 class MainActivity : Activity() {
@@ -36,6 +38,12 @@ class MainActivity : Activity() {
         ))
         // Edita o layout do RecycleView
         list.layoutManager = LinearLayoutManager(this)
+
+        val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        fab.setOnClickListener {
+            val intent = Intent(this, FormProdutosActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
