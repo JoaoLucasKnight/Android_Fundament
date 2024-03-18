@@ -8,16 +8,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.orgs.R
 import br.com.alura.orgs.dao.ProdutoDAO
+import br.com.alura.orgs.databinding.ActivityMainBinding
 import br.com.alura.orgs.ui.recyclerview.adpter.ListProdutosAdpater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListActivity : AppCompatActivity(R.layout.activity_main) {
+
     
     private val dao = ProdutoDAO()
     private val adpater = ListProdutosAdpater(this, produtos = dao.listar())
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // configura o recicler com nosso adpter
+        setContentView(binding.root)
         configRecyclerView()
         configFab()
     }
@@ -29,13 +35,13 @@ class ListActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun configRecyclerView() {
-        val list = findViewById<RecyclerView>(R.id.list)
+        val list = binding.list
         list.adapter  = adpater
         list.layoutManager =  LinearLayoutManager(this)
     }
 
     private fun configFab() {
-        val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        val fab = binding.floatingActionButton
         fab.setOnClickListener { goForm() }
     }
 

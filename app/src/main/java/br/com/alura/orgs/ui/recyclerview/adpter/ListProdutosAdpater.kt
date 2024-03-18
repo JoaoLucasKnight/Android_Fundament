@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.orgs.R
+import br.com.alura.orgs.databinding.ActivityMainBinding
+import br.com.alura.orgs.databinding.ProductItemBinding
 import br.com.alura.orgs.model.Produto
 
 class ListProdutosAdpater(
@@ -15,9 +17,16 @@ class ListProdutosAdpater(
     produtos: List<Produto>
 ) : RecyclerView.Adapter<ListProdutosAdpater.ViewHolder>() {
 
+    private val binding by lazy {
+
+    }
+
     private val produtos = produtos.toMutableList()
     // Criar o proprio ViewHolder e implmenta
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(
+        private val binding: ProductItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
         fun vincula(produto: Produto) {
             // itemView é o item da lista<Produto>
             val nome = itemView.findViewById<TextView>(R.id.nome)
@@ -31,9 +40,8 @@ class ListProdutosAdpater(
 
     // função para criar o ViewHolder e prrenchida com as informações do layout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater
-            .from(context)
-            .inflate(R.layout.product_item, parent, false)
+        val inflater = LayoutInflater.from(context)
+        val view = ProductItemBinding.inflate(inflater, parent, false)
         return ViewHolder(view)
     }
 
