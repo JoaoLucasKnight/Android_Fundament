@@ -22,7 +22,7 @@ class ListProdutosAdpater(
     }
 
     private val produtos = produtos.toMutableList()
-    // Criar o proprio ViewHolder e implmenta
+
     class ViewHolder(
         private val binding: ProductItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
