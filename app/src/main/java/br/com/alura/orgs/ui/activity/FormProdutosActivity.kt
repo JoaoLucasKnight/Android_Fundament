@@ -6,11 +6,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 import br.com.alura.orgs.R
 import br.com.alura.orgs.dao.ProdutoDAO
 import br.com.alura.orgs.databinding.ActivityFormProdutosBinding
+import br.com.alura.orgs.databinding.FormImagemBinding
 import br.com.alura.orgs.model.Produto
 import java.math.BigDecimal
 
@@ -22,6 +24,16 @@ class FormProdutosActivity : AppCompatActivity(R.layout.activity_form_produtos) 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.imgProduto.setOnClickListener{
+            val binding = FormImagemBinding.inflate(layoutInflater)
+
+            AlertDialog.Builder(this)
+                .setView(binding.root)
+                .setPositiveButton("Confirmar"){_,_ -> }
+                .setNegativeButton("Cancelar"){_,_ -> }
+                .show()
+        }
         configBttSalvar()
     }
 
@@ -37,9 +49,9 @@ class FormProdutosActivity : AppCompatActivity(R.layout.activity_form_produtos) 
     }
     private fun criaProduto(): Produto {
         // Busca
-        val nome = binding.formNome.text.toString()
-        val desc = binding.formDescricao.text.toString()
-        val valorText = binding.formValor.text.toString()
+        val nome = binding.InputTextName.text.toString()
+        val desc = binding.InputTextDescricao.text.toString()
+        val valorText = binding.InputTextValor.text.toString()
         val valor = BigDecimal(valorText)
         // cria
         return Produto(
