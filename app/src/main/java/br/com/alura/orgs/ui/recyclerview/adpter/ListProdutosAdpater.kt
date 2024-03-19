@@ -3,14 +3,12 @@ package br.com.alura.orgs.ui.recyclerview.adpter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import br.com.alura.orgs.R
-import br.com.alura.orgs.databinding.ActivityMainBinding
 import br.com.alura.orgs.databinding.ProductItemBinding
 import br.com.alura.orgs.model.Produto
+import java.text.NumberFormat
+import java.util.*
 
 class ListProdutosAdpater(
     private val context: Context,
@@ -29,12 +27,18 @@ class ListProdutosAdpater(
 
         fun vincula(produto: Produto) {
             // itemView é o item da lista<Produto>
-            val nome = itemView.findViewById<TextView>(R.id.nome)
+            val nome = binding.nome
             nome.text = produto.nome
-            val descricao = itemView.findViewById<TextView>(R.id.descricao)
+            val descricao = binding.descricao
             descricao.text = produto.descricao
-            val valor = itemView.findViewById<TextView>(R.id.valor)
-            valor.text = produto.valor.toPlainString()
+
+            // Formatação de moeda da Java.util.*
+            val valorFormatado = NumberFormat
+                .getCurrencyInstance(Locale("pt", "br"))
+                .format(produto.valor)
+
+            val valor = binding.valor
+            valor.text = valorFormatado
         }
     }
 
