@@ -3,10 +3,13 @@ package br.com.alura.orgs.ui.recyclerview.adpter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ProductItemBinding
 import br.com.alura.orgs.model.Produto
+import coil.load
 import java.text.NumberFormat
 import java.util.*
 
@@ -37,8 +40,19 @@ class ListProdutosAdpater(
                 .getCurrencyInstance(Locale("pt", "br"))
                 .format(produto.valor)
 
+            val vise = if (produto.img == null){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+
             val valor = binding.valor
             valor.text = valorFormatado
+            binding.imageView.load(produto.img) {
+                fallback(R.drawable.erro)
+                error(R.drawable.erro)
+                placeholder(R.drawable.placeholder)
+            }
         }
     }
 
