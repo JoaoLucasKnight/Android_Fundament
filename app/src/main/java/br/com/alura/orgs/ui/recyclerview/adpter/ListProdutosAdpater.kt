@@ -40,11 +40,6 @@ class ListProdutosAdpater(
                 .getCurrencyInstance(Locale("pt", "br"))
                 .format(produto.valor)
 
-            val vise = if (produto.img == null){
-                View.VISIBLE
-            }else{
-                View.GONE
-            }
 
             val valor = binding.valor
             valor.text = valorFormatado

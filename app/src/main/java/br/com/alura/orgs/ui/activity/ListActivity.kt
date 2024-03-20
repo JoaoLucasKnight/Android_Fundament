@@ -13,13 +13,12 @@ import br.com.alura.orgs.ui.recyclerview.adpter.ListProdutosAdpater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListActivity : AppCompatActivity(R.layout.activity_main) {
-
-    
     private val dao = ProdutoDAO()
     private val adpater = ListProdutosAdpater(this, produtos = dao.listar())
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -34,9 +33,11 @@ class ListActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun configRecyclerView() {
-        val list = binding.list
-        list.adapter  = adpater
-        list.layoutManager =  LinearLayoutManager(this)
+        binding.list.run {
+                adapter = adpater
+                layoutManager = LinearLayoutManager(context)
+            }
+
     }
 
     private fun configFab() {
